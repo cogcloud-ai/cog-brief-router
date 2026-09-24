@@ -1,0 +1,300 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Brief Router output",
+  "description": "The payload under envelope v1's `payload` key. `$defs.decision` is authored with task_logic.decide; `$defs.answers` is derived from context/questions.json by `pixi run derive-schema` and checked for drift.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "decision",
+    "answers",
+    "answered_by"
+  ],
+  "properties": {
+    "decision": {
+      "$ref": "#/$defs/decision"
+    },
+    "answers": {
+      "$ref": "#/$defs/answers"
+    },
+    "answered_by": {
+      "$ref": "#/$defs/answered_by"
+    }
+  },
+  "$defs": {
+    "decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "brief_id",
+        "name",
+        "recommendation",
+        "confidence",
+        "designer_kind",
+        "agrees_with_designer",
+        "flags",
+        "reasons"
+      ],
+      "properties": {
+        "brief_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "recommendation": {
+          "enum": [
+            "code",
+            "context",
+            "decision",
+            "needs-review"
+          ]
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "designer_kind": {
+          "enum": [
+            "context",
+            "code",
+            null
+          ]
+        },
+        "agrees_with_designer": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "flags": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "low-confidence",
+              "signals-disagree",
+              "underspecified-brief",
+              "consider-decision-class"
+            ]
+          }
+        },
+        "reasons": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "answered_by": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "model",
+        "answer_source"
+      ],
+      "properties": {
+        "model": {
+          "type": "string",
+          "minLength": 1
+        },
+        "answer_source": {
+          "enum": [
+            "system-one-model",
+            "llm-adapter"
+          ]
+        }
+      }
+    },
+    "answers": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "implementation",
+        "open_ended_output",
+        "bounded_answer_space",
+        "rules_suffice",
+        "specification_clarity"
+      ],
+      "properties": {
+        "implementation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "choice",
+            "probabilities",
+            "confidence"
+          ],
+          "properties": {
+            "type": {
+              "const": "choice"
+            },
+            "choice": {
+              "enum": [
+                "code",
+                "context",
+                "decision"
+              ]
+            },
+            "probabilities": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "code",
+                "context",
+                "decision"
+              ],
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "context": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "decision": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                }
+              }
+            },
+            "confidence": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          }
+        },
+        "open_ended_output": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "noul"
+          ],
+          "properties": {
+            "type": {
+              "const": "noul"
+            },
+            "noul": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          }
+        },
+        "bounded_answer_space": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "noul"
+          ],
+          "properties": {
+            "type": {
+              "const": "noul"
+            },
+            "noul": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          }
+        },
+        "rules_suffice": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "noul"
+          ],
+          "properties": {
+            "type": {
+              "const": "noul"
+            },
+            "noul": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          }
+        },
+        "specification_clarity": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "score",
+            "legend",
+            "probabilities",
+            "confidence"
+          ],
+          "properties": {
+            "type": {
+              "const": "score"
+            },
+            "score": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 2
+            },
+            "legend": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "0",
+                "1",
+                "2"
+              ],
+              "properties": {
+                "0": {},
+                "1": {},
+                "2": {}
+              }
+            },
+            "probabilities": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "0",
+                "1",
+                "2"
+              ],
+              "properties": {
+                "0": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "1": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "2": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                }
+              }
+            },
+            "confidence": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          }
+        }
+      }
+    }
+  }
+}

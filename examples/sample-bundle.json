@@ -1,0 +1,14 @@
+{
+  "brief": {
+    "id": "brief-1",
+    "step_ids": [
+      "step-2"
+    ],
+    "name": "cog-ticket-priority",
+    "brief": "Given one inbound support ticket (subject and body text), assign a priority of P1, P2 or P3 using the support team's written priority policy, and say whether the customer mentions a contractual deadline. Output only the priority and the yes/no flag.",
+    "prohibits": [
+      "send_external_message"
+    ],
+    "cog_kind": "context"
+  }
+}

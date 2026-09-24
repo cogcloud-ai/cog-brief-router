@@ -1,0 +1,47 @@
+{
+  "implementation": {
+    "type": "choice",
+    "instructions": {
+      "question": "Which kind of Cog should implement the work described in `brief`?",
+      "note": "A Cog is one bounded unit of work with declared inputs and outputs."
+    },
+    "criteria": {
+      "code": "Explicit rules or a fixed algorithm produce the output; no interpretation or judgment is needed when it runs.",
+      "context": "Needs open-ended interpretation, writing or synthesis: a model must compose free text or new structured content.",
+      "decision": "Needs judgment, but every output is a bounded typed answer: a label from a known set, a yes/no, or a rating on a fixed scale."
+    }
+  },
+  "open_ended_output": {
+    "type": "noul",
+    "instructions": "The Cog described in `brief` must write open-ended text or compose new structured content, not only pick labels, yes/no answers or ratings.",
+    "criteria": {
+      "true": "Composes free text or new content",
+      "false": "Only selects or rates from known options"
+    }
+  },
+  "bounded_answer_space": {
+    "type": "noul",
+    "instructions": "Every output of the Cog described in `brief` is a choice from a known set of options, a yes/no, or a rating on a fixed scale.",
+    "criteria": {
+      "true": "Outputs come from a known, fixed answer space",
+      "false": "Outputs are open-ended"
+    }
+  },
+  "rules_suffice": {
+    "type": "noul",
+    "instructions": "A careful programmer could write explicit rules that always produce the correct output of the Cog described in `brief`, with no model judgment.",
+    "criteria": {
+      "true": "Deterministic rules suffice",
+      "false": "Judgment or interpretation is required"
+    }
+  },
+  "specification_clarity": {
+    "type": "score",
+    "instructions": "How completely does `brief` specify the Cog's inputs, outputs and success criteria?",
+    "criteria": [
+      "Vague: only a purpose is stated",
+      "Partial: some inputs or outputs are named",
+      "Clear: inputs, outputs and success criteria are all named"
+    ]
+  }
+}

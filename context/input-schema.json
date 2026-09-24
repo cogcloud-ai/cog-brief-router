@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Brief Router input",
+  "description": "One missing-Cog brief, in the shape cog-op-designer emits under cog_briefs.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "brief"
+  ],
+  "properties": {
+    "brief": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "name",
+        "brief",
+        "prohibits"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "step_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "name": {
+          "type": "string",
+          "pattern": "^cog-[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "brief": {
+          "type": "string",
+          "minLength": 1,
+          "x-cog-input": {
+            "widget": "textarea"
+          }
+        },
+        "prohibits": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "cog_kind": {
+          "type": "string",
+          "enum": [
+            "context",
+            "code"
+          ],
+          "description": "The designer's proposed implementation kind, when it gave one."
+        }
+      }
+    }
+  }
+}

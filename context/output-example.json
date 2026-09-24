@@ -1,0 +1,60 @@
+{
+  "decision": {
+    "brief_id": "brief-1",
+    "name": "cog-ticket-priority",
+    "recommendation": "decision",
+    "confidence": 0.7,
+    "designer_kind": "context",
+    "agrees_with_designer": true,
+    "flags": [
+      "consider-decision-class"
+    ],
+    "reasons": [
+      "implementation: decision (confidence 0.70)",
+      "designer proposed context; a decision Cog is a context Cog in the decision class"
+    ]
+  },
+  "answers": {
+    "implementation": {
+      "type": "choice",
+      "choice": "decision",
+      "confidence": 0.7,
+      "probabilities": {
+        "code": 0.05,
+        "context": 0.15,
+        "decision": 0.8
+      }
+    },
+    "open_ended_output": {
+      "type": "noul",
+      "noul": 0.08
+    },
+    "bounded_answer_space": {
+      "type": "noul",
+      "noul": 0.93
+    },
+    "rules_suffice": {
+      "type": "noul",
+      "noul": 0.2
+    },
+    "specification_clarity": {
+      "type": "score",
+      "score": 1.85,
+      "confidence": 0.7,
+      "legend": {
+        "0": "Vague: only a purpose is stated",
+        "1": "Partial: some inputs or outputs are named",
+        "2": "Clear: inputs, outputs and success criteria are all named"
+      },
+      "probabilities": {
+        "0": 0.0,
+        "1": 0.15,
+        "2": 0.85
+      }
+    }
+  },
+  "answered_by": {
+    "model": "illustrative-fixture",
+    "answer_source": "system-one-model"
+  }
+}
