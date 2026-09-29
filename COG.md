@@ -85,6 +85,6 @@ exercise the decision policy.
 ## Where the machinery came from
 
 `src/cog_core.py`, `src/cog_cli.py` and `src/system_one_contract.py` are
-cog-smith decision-cog machinery 0.1.0, verified by `smith check`;
+cog-smith decision-cog machinery 0.1.1, verified by `smith check`;
 `scripts/composed_usage.py` is Workbench's canonical adapter. This Cog's
 identity is `cog.yaml`, `context/` and `src/task_logic.py`.
