@@ -16,3 +16,5 @@ pixi run check
 
 Created with `smith new --class decision --from-request`; see cog-smith's
 BUILDING_COGS.md §7c for the decision class.
+
+Composed invocation uses the canonical portable Workbench adapter: activate an admitted System One binding with `suite activate-composition`, and re-activate when its consumer or host changes. The installation record may use workspace-relative paths; stale records report a concrete repair command. Decision machinery 0.1.4 is copied verbatim from Smith.
