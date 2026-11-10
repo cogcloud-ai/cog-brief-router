@@ -4,6 +4,7 @@ version = "0.1.0"
 description = "Recommends whether a missing-Cog brief should be built as a code, context or decision Cog, with calibrated confidence and review flags."
 channels = ["conda-forge"]
 platforms = ["osx-arm64", "linux-64"]
+requires-pixi = ">=0.82.1"
 
 [dependencies]
 # 3.11+: the machinery reads this file's [tool.cog] manifest with tomllib
